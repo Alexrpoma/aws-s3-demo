@@ -22,10 +22,9 @@ public class S3Config {
   public S3Client s3Client() {
     Region region = Region.US_EAST_2;
     AwsCredentials awsCredentials = AwsBasicCredentials.create(accessKeyId, secretKeyId);
-    S3Client s3Client = S3Client.builder()
+    return S3Client.builder()
         .region(region)
         .credentialsProvider(StaticCredentialsProvider.create(awsCredentials))
         .build();
-    return s3Client;
   }
 }
