@@ -19,7 +19,7 @@ public class S3Service {
     try {
       String fileName = multipartFile.getOriginalFilename();
       PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-          .bucket("aws-spring-alx-bucket0")
+          .bucket("aws-spring-alx-bucket0") //AWS Bucket name.
           .key(fileName)
           .build();
       s3Client.putObject(putObjectRequest, RequestBody.fromBytes(multipartFile.getBytes()));
