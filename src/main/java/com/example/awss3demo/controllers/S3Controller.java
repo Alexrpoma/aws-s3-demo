@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("api/v1/aws-3")
+@RequestMapping("api/v1/aws-s3")
 @RequiredArgsConstructor
 public class S3Controller {
 
@@ -16,7 +16,7 @@ public class S3Controller {
 
   @GetMapping
   public String welcome() {
-    return "Welcome to AWS!!";
+    return "Welcome to AWS-S3!!";
   }
 
   @PostMapping("/upload")
