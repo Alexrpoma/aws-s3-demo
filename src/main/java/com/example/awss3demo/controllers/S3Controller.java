@@ -19,6 +19,12 @@ public class S3Controller {
     return "Welcome to AWS-S3!!";
   }
 
+  @GetMapping("/download/{fileName}")
+  public String downloadFile(@PathVariable String fileName) throws IOException {
+    return s3Service.downloadFile(fileName);
+  }
+
+
   @PostMapping("/upload")
   public String uploadFile(@RequestParam("file")MultipartFile multipartFile) throws IOException {
     return s3Service.uploadFile(multipartFile);

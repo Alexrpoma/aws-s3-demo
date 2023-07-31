@@ -50,7 +50,7 @@ public class S3Service implements IS3Service{
         .build();
     ResponseInputStream<GetObjectResponse> responseInputStream = s3Client.getObject(objectRequest);
 
-    try(FileOutputStream fileOutputStream = new FileOutputStream(downloadFilePath)) {
+    try(FileOutputStream fileOutputStream = new FileOutputStream(downloadFilePath + fileName)) {
       byte[] read_buffer = new byte[1024];
       int read_length = 0;
       while((read_length = responseInputStream.read(read_buffer)) > 0) {
