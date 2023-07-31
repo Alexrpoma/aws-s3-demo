@@ -11,10 +11,11 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class S3Service {
+public class S3Service implements IS3Service{
 
   private final S3Client s3Client;
 
+  @Override
   public String uploadFile(MultipartFile multipartFile) throws IOException {
     try {
       String fileName = multipartFile.getOriginalFilename();
@@ -27,5 +28,10 @@ public class S3Service {
     }catch (IOException ioe) {
       throw new IOException(ioe.getMessage());
     }
+  }
+
+  @Override
+  public String downloadFile(String fileName) throws IOException {
+    return null;
   }
 }
