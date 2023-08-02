@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/aws-s3")
@@ -22,6 +23,11 @@ public class S3Controller {
   @GetMapping("/download/{fileName}")
   public String downloadFile(@PathVariable String fileName) throws IOException {
     return s3Service.downloadFile(fileName);
+  }
+
+  @GetMapping("/files")
+  public List<String> listFiles() throws IOException {
+    return s3Service.listFiles();
   }
 
 
