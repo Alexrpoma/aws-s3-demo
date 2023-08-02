@@ -12,6 +12,8 @@ import software.amazon.awssdk.services.s3.model.*;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -60,6 +62,24 @@ public class S3Service implements IS3Service{
       log.error(ioException.getMessage());
     }
     return "File %s downloaded successfully!".formatted(fileName);
+  }
+
+  @Override
+  public List<String> listFiles() throws IOException {
+    try {
+      ListObjectsRequest listObjects = ListObjectsRequest.builder()
+          .bucket("aws-spring-alx-bucket0")
+          .build();
+      List<S3Object> objects = s3Client.listObjects(listObjects).contents();
+      List<String> fileNames = new ArrayList<>();
+      for(S3Object s3Object : objects) {
+        fileNames.add(s3Object.key());
+      }
+      return fileNames;
+    } catch (S3Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return null;
   }
 
   private boolean isExistFile(String objKey) {
